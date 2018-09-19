@@ -6,6 +6,13 @@
  *
 */
 
+/*
+ * 2018-09-19 
+ * Added .clone class on the cloned slides for the special case of continuous and two slides
+ *
+ * Kim Thörning
+*/
+
 function Swipe(container, options) {
 
   "use strict";
@@ -45,6 +52,12 @@ function Swipe(container, options) {
 
     //special case if two slides
     if (browser.transitions && options.continuous && slides.length < 3) {
+      var clonedSlide1 = slides[0].cloneNode(true);
+			var clonedSlide2 = element.children[1].cloneNode(true);
+
+			clonedSlide1.classList.add('clone');
+			clonedSlide2.classList.add('clone');
+      
       element.appendChild(slides[0].cloneNode(true));
       element.appendChild(element.children[1].cloneNode(true));
       slides = element.children;
